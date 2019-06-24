@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ribbon-demo
+  profiles:
+    active: dev
+  cloud:
+    config:
+      name: config
+      username: wenlong
+      password: 123456
+      discovery:
+        service-id: config-server
+        enabled: true
+
+server:
+  port: 15998
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19998/eureka/
+

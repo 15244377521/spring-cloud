@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: feign-demo
+  profiles:
+    active: dev
+  cloud:
+    config:
+      name: config
+      username: wenlong
+      password: 123456
+      discovery:
+        enabled: true
+        service-id: config-server
+server:
+  port: 14998
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19998/eureka
+feign:
+  hystrix:
+    enabled: true

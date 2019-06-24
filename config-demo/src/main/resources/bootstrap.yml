@@ -1,0 +1,35 @@
+
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:15244377521/springcloud.git
+          username: 15244377521
+          password: Abc@1234%
+        #启动加密算法
+        encrypt:
+          enabled: true
+  security:
+    user:
+      name: wenlong
+      password: 123456
+server:
+  port: 18998
+management:
+  endpoint:
+    beans:
+      inabled: "*"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19998/eureka/
+
+encrypt:
+  key: "A123456c"
+

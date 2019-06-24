@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: zuul-demo
+server:
+  port: 13998
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19998/eureka/
+zuul:
+  host:
+    ###定义连接超时时间
+    connect-timeout-millis: 2000
+    ###定义socket连接超时时间
+    socket-timeout-millis: 1000
+    ###定义http连接池大小
+    max-total-connections: 200
+    ###定义每个host最大连接数
+    max-per-route-connections: 20
+
+
+#####前缀
+  #prefix: /qq
+   ###网关忽略请求
+  #ignored-services: helloclient
+  ###定义信号量
+  ribbon-isolation-strategy: semaphore
+  ###定义线程池
+  #ribbon-isolation-strategy: thread
+  semaphore:
+    max-semaphores: 100
+
+####zuul 转发#######################
+  routes:
+    route1:
+      ##拦截调所有/teacher的请求
+      #/teacher/* ： 拦截调所有/teacher/后面带一个字段的请求
+      path: /teacher/**
+      ###转发
+      url: http://www.baidu.com
+
+    route2:
+      path: /getTeacher/**
+      ###转发到eureka注册的东西
+      serviceId: FEIGN-DEMO
+
+    ###定义要放行的请求
+    user-token:
+      path: /token/byPhone
+      serviceId: user-demo
+
+
+
+#####以下是关于token的配置#######
+token:
+  jwt:
+    key: nick123
+    iss: 11
+    expm: 10
+###自定义配置 配置会注册到longConfigationBean类中
+wenlong:
+  zuul:
+    token-filter:
+      noAuthenticationRoutes: user-token
+

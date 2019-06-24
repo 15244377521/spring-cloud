@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: user-demo
+server:
+  port: 11998
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:19998/eureka/
+  instance:
+    prefer-ip-address: true
+
+token:
+  jwt:
+    key: nick123
+    iss: 11
+    expm: 10
